@@ -157,32 +157,6 @@ Mini intentionally avoids unnecessary complexity.
 
 ---
 
-# Example
-
-```mini
-println "=== Guess Game ==="
-
-target = randrange(1,10)
-
-guess = 0
-
-while guess != target
-
-    guess = input "Guess: "
-
-    if guess < target
-        println "Too low"
-    elif guess > target
-        println "Too high"
-    else
-        println "Correct!"
-    endif
-
-endwhile
-```
-
----
-
 # Build
 
 Requirements
