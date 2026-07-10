@@ -10,19 +10,11 @@ Mini focuses on readability, simplicity, and fun.
 
 # Features
 
-## Variables
-
-```mini
-x = 10
-name = "Mini"
-pi = 3.14
-```
-
 ## Input
 
 ```mini
 name = input "Name: "
-println "Hello " + name
+println "Hello " name
 ```
 
 ## Conditions
