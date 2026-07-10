@@ -84,14 +84,6 @@ println (2+3)*4
 println 2^8
 println 25^0.5
 ```
-
-## Random
-
-```mini
-println rand(100)
-println randrange(1,10)
-```
-
 ## File Operations
 
 ```mini
