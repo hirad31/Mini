@@ -14,7 +14,7 @@ Mini focuses on readability, simplicity, and fun.
 
 ```mini
 name = input "Name: "
-println "Hello " name
+println Hello name
 ```
 
 ## Conditions
