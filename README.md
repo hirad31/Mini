@@ -76,17 +76,6 @@ println numbers[0]
 println numbers[1]
 println numbers[2]
 ```
-
-## Dictionaries
-
-```mini
-dict_set player name "Alex"
-dict_set player hp 20
-
-println dict_get player name
-println dict_get player hp
-```
-
 ## Math
 
 ```mini
