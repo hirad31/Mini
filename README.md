@@ -82,7 +82,7 @@ println numbers[2]
 println 2+3*4
 println (2+3)*4
 println 2^8
-println sqrt(25)
+println 25^0.5
 ```
 
 ## Random
