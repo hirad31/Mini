@@ -172,20 +172,6 @@ Mini intentionally avoids unnecessary complexity.
 Requirements
 
 - C++17
-- Visual Studio 2022
-
-Compile
-
-```
-g++ main.cpp -std=c++17 -O2 -o Mini
-```
-
-Run
-
-```
-Mini.exe
-```
-
 ---
 
 # Project Goals
