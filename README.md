@@ -8,6 +8,16 @@ Mini focuses on readability, simplicity, and fun.
 
 ---
 
+# Important Note
+
+Mini is still in early development. Some features, commands, or examples shown in this documentation may not work correctly or may not be fully implemented yet.
+
+The language is continuously improving, and future updates will fix bugs, improve stability, and complete missing features.
+
+Thank you for understanding and supporting Mini!
+
+---
+
 # Features
 
 ## Input
