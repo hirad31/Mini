@@ -39,15 +39,6 @@ while x < 10
     inc x
 endwhile
 ```
-
-### For
-
-```mini
-for i=1 to 5
-    println i
-endfor
-```
-
 ### Repeat
 
 ```mini
