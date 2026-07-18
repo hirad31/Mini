@@ -1,0 +1,9 @@
+secret = 7
+
+guess = input Guess: 
+
+if (guess == secret) 
+    println "Correct!"
+else
+    println "Wrong!"
+endif

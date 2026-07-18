@@ -1,0 +1,9 @@
+let a = 15
+let b = 4
+
+println a + b
+println a - b
+println a * b
+println a / b
+println a % b
+println a ^ 2

@@ -1,0 +1,8 @@
+a = input "First: "
+b = input "Second: "
+
+println a + b
+println a - b
+println a * b
+println a / b
+println a ^ b
