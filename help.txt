@@ -1,1403 +1,809 @@
 ================================================================================
-                         MINI PROGRAMMING LANGUAGE
-                              Complete Reference
+                     MINI LANGUAGE v4.0.0 — COMPLETE REFERENCE
 ================================================================================
 
-TABLE OF CONTENTS
------------------
-  1. Introduction & Philosophy
-  2. Getting Started
-  3. Data Types
-  4. Variables & Constants
-  5. Operators
-  6. Control Flow
-  7. Functions
-  8. Arrays
-  9. Dictionaries
-  10. Strings
-  11. Math Functions
-  12. Random Functions
-  13. File Operations
-  14. System Functions
-  15. Input/Output
-  16. Constants & System Variables
-  17. Comments
-  18. Error Handling
-  19. Tips & Best Practices
-  20. Complete Examples
+Mini Language is a modern, interpreted programming language designed for
+readability and ease of use. Version 4.0.0 brings significant improvements
+in performance, error handling, and language features while preserving
+Mini's unique identity.
+
+Author: Mini Language Team
+Copyright: 2026
 
 ================================================================================
-1. INTRODUCTION & PHILOSOPHY
+                           TABLE OF CONTENTS
 ================================================================================
 
-Mini is a beginner-friendly programming language designed to be:
-
-  - EASY TO LEARN    Simple, readable syntax
-  - EASY TO READ     Clear structure, no cryptic symbols
-  - POWERFUL         Enough for real projects
-  - FUN              Immediate feedback, interactive mode
-
-Mini is similar in spirit to Python and Lua, but simpler. It supports:
-
-  - Variables with automatic type detection
-  - All common data types (int, float, string, bool, arrays, dictionaries)
-  - Full control flow (if/elif/else, while, for, foreach, repeat)
-  - Functions with parameters and return values
-  - Built-in math, string, array, and file operations
-  - Interactive REPL mode for quick experiments
-  - File execution for running programs
-
-================================================================================
-2. GETTING STARTED
-================================================================================
-  1. Run the interpreter:
-     ./mini.exe
-
-RUNNING PROGRAMS:
-  Interactive mode (REPL):
-    > ./mini.exe
-    > println "Hello, World!"
-
-  File execution:
-    > ./mini.exe myfile.mini
-
-  Help:
-    > ./mini.exe --help
-    > ./mini.exe -h
-
-  Version:
-    > ./mini.exe --version
-
-REPL COMMANDS:
-  help      - Show available commands
-  exit      - Exit the interpreter
-  quit      - Exit the interpreter
-  clear     - Clear the screen
-  cls       - Clear the screen (alias)
-  load file - Load and run a .mini file
+1.  Introduction
+2.  Getting Started
+3.  Variables & Constants
+4.  Data Types
+5.  Operators
+6.  Control Flow
+7.  Functions
+8.  Arrow Functions
+9.  Classes & Inheritance
+10. Arrays
+11. Objects
+12. Dictionaries
+13. F-Strings (Formatted String Literals)
+14. Multi-Line Strings
+15. Error Handling (Try/Catch)
+16. Range Operator
+17. Spread Operator
+18. Optional Chaining
+19. Null Coalescing
+20. Switch/Case
+21. Built-in Functions
+22. Collection Higher-Order Functions (New in v4.0)
+23. Language Keywords
+24. Operator Precedence
+25. REPL Commands
+26. Examples
+27. FAQ
+28. Best Practices
+29. Troubleshooting
+30. Version History
 
 ================================================================================
-3. DATA TYPES
+                        1. INTRODUCTION
 ================================================================================
 
-Mini supports the following data types:
+Mini Language is a programming language built for simplicity and clarity.
+It uses a clean, English-like syntax that makes programs easy to read
+and write. Version 4.0.0 is a major upgrade with:
 
-  INTEGER (int)
-    Whole numbers: 42, -10, 0, 1000000
-    Range: approximately -2 billion to 2 billion
-
-  FLOAT (double)
-    Decimal numbers: 3.14, -2.5, 0.001, 1e10
-    Precision: approximately 15 decimal digits
-
-  STRING
-    Text enclosed in double quotes: "Hello, World!"
-    Supports escape characters:
-      \n  - newline
-      \t  - tab
-      \r  - carriage return
-      \\  - backslash
-      \"  - double quote
-      \'  - single quote
-      \0  - null character
-
-  BOOLEAN (bool)
-    Logical values: true, false, yes, no
-    Case-insensitive: TRUE, True, FALSE, False all work
-
-  ARRAY
-    Ordered collections: [1, 2, 3]
-    Can contain: integers, floats, or strings (homogeneous)
-    Example: nums = [10, 20, 30]
-    Example: names = ["Alice", "Bob", "Charlie"]
-
-  DICTIONARY
-    Key-value pairs: stored using dict_set/dict_get functions
-    Keys and values are strings internally
-
-  NULL
-    Represented as: null
-    Default value for undefined variables
-
-TYPE DETECTION:
-  Mini automatically detects the type when you assign a value:
-
-    x = 42          # int
-    y = 3.14        # float
-    name = "Alice"  # string
-    flag = true     # bool
-    arr = [1, 2, 3] # array
-
-TYPE CHECKING:
-  type var       # Show the type of a variable
-  typeof var     # Same as type
-
-  Examples:
-    x = 42
-    type x        # Output: int
-
-    name = "Hi"
-    type name     # Output: string
+  - Improved error messages with line numbers and suggestions
+  - Faster execution with optimized variable lookups
+  - New collection higher-order functions (map, filter, reduce)
+  - New string, math, and hash functions
+  - Enhanced REPL with more commands
+  - Better documentation and examples
 
 ================================================================================
-4. VARIABLES & CONSTANTS
+                        2. GETTING STARTED
 ================================================================================
 
-VARIABLE DECLARATION:
+Run a .mini file:
+    mini program.mini
 
-  # Simple assignment (auto-detects type)
-  x = 42
-  name = "Alice"
-  pi = 3.14
+Start the interactive REPL:
+    mini
 
-  # Explicit declaration
-  let x = 42
+Get help:
+    mini --help
 
-  # Constant (cannot be changed)
-  const PI = 3.14159
-  const MAX_SIZE = 100
-
-VARIABLE RULES:
-  - Names must start with a letter or underscore
-  - Names can contain letters, numbers, and underscores
-  - Names are case-insensitive: myVar, myvar, MYVAR are the same
-  - No spaces in variable names
-  - Avoid reserved words (if, while, for, etc.)
-
-MODIFYING VARIABLES:
-
-  # Assignment
-  x = 10
-  x = 20          # x is now 20
-
-  # Compound assignment
-  x += 5          # x = x + 5
-  x -= 3          # x = x - 3
-  x *= 2          # x = x * 2
-  x /= 4          # x = x / 4
-  x %= 3          # x = x % 3
-
-  # Increment/Decrement
-  inc x           # x = x + 1
-  dec x           # x = x - 1
-  x++             # x = x + 1 (shorthand)
-  x--             # x = x - 1 (shorthand)
-
-DELETING VARIABLES:
-
-  delete varname  # Remove a variable entirely
-
-VIEWING VARIABLES:
-
-  vars            # List all variables and their values
-  clear_vars      # Clear all variables
-
-CONSTANTS:
-
-  const PI = 3.14159
-  PI = 3.0        # Warning: cannot modify constant
-
-  System constants (read-only):
-    PI  = 3.14159265358979...
-    E   = 2.71828182845904...
+Show version:
+    mini --version
 
 ================================================================================
-5. OPERATORS
+                    3. VARIABLES & CONSTANTS
 ================================================================================
 
-ARITHMETIC OPERATORS:
+Variables are declared with 'let' and can be reassigned:
+    let x = 10
+    x = 20          // OK
 
-  +   Addition          5 + 3 = 8
-  -   Subtraction       5 - 3 = 2
-  *   Multiplication    5 * 3 = 15
-  /   Division          6 / 3 = 2
-  %   Modulo (remainder) 7 % 3 = 1
-  ^   Exponentiation    2 ^ 3 = 8
+Constants are declared with 'const' and cannot be reassigned:
+    const PI = 3.14159
+    PI = 3          // ERROR: Cannot reassign constant
 
-COMPARISON OPERATORS:
+Variable names must start with a letter or underscore:
+    let myVar = 1
+    let _private = 2
+    let name123 = "valid"
 
-  ==  Equal to                  5 == 5  -> true
-  !=  Not equal to              5 != 3  -> true
-  <   Less than                 3 < 5   -> true
-  >   Greater than              5 > 3   -> true
-  <=  Less than or equal to     5 <= 5  -> true
-  >=  Greater than or equal to  5 >= 3  -> true
-
-LOGICAL OPERATORS (keyword form - recommended):
-
-  and   Logical AND    true and false  -> false
-  or    Logical OR     true or false   -> true
-  not   Logical NOT    not true        -> false
-
-LOGICAL OPERATORS (symbol form):
-
-  &&    Logical AND    true && false   -> false
-  ||    Logical OR     true || false   -> true
-  !     Logical NOT    !true           -> false
-
-OPERATOR PRECEDENCE (highest to lowest):
-
-  1. ^           Exponentiation
-  2. * / %       Multiplication, Division, Modulo
-  3. + -         Addition, Subtraction
-  4. == != < > <= >=  Comparison
-  5. not !       Logical NOT
-  6. and &&      Logical AND
-  7. or ||       Logical OR
-
-STRING CONCATENATION:
-
-  "Hello" + " " + "World"   -> "Hello World"
-  "x = " + x                -> "x = 42" (if x is 42)
+Shorthand assignments:
+    x += 5          // x = x + 5
+    x -= 3          // x = x - 3
+    x *= 2          // x = x * 2
+    x /= 4          // x = x / 4
+    x++             // x = x + 1
+    x--             // x = x - 1
 
 ================================================================================
-6. CONTROL FLOW
+                         4. DATA TYPES
 ================================================================================
 
-IF STATEMENT:
+Mini Language has 9 value types:
 
-  if condition
-    # code to execute if condition is true
-  endif
+Type        Example             Description
+----        -------             -----------
+number      42, 3.14, 1.5e10   All numbers are 64-bit floats
+string      "hello", 'world'   Text data with escape sequences
+boolean     true, false         Logical values
+null        null                Absence of value
+array       [1, 2, 3]          Ordered collection
+object      { key: value }      Key-value pairs
+function    (x) => x * 2       Callable code block
+class       class Foo { }       Object blueprint
+instance    new Foo()           Created from a class
 
-IF-ELSE:
-
-  if condition
-    # code if true
-  else
-    # code if false
-  endif
-
-IF-ELIF-ELSE:
-
-  if score >= 90
-    println "Grade: A"
-  elif score >= 80
-    println "Grade: B"
-  elif score >= 70
-    println "Grade: C"
-  elif score >= 60
-    println "Grade: D"
-  else
-    println "Grade: F"
-  endif
-
-NESTED IF:
-
-  if x > 0
-    if x < 10
-      println "Single digit positive"
-    endif
-  endif
-
-WHILE LOOP:
-
-  while condition
-    # code to repeat
-    # use break to exit early
-    # use continue to skip to next iteration
-  endwhile
-
-  Example:
-    count = 0
-    while count < 10
-      println count
-      count += 1
-    endwhile
-
-FOR LOOP:
-
-  for var = start to end
-    # var goes from start to end (inclusive)
-  endfor
-
-  Example:
-    for i = 1 to 5
-      println i
-    endfor
-    # Output: 1, 2, 3, 4, 5
-
-FOR LOOP WITH STEP:
-
-  forstep var = start to end step stepvalue
-    # var goes from start to end, incrementing by step
-  endfor
-
-  Example:
-    forstep i = 0 to 10 step 2
-      println i
-    endfor
-    # Output: 0, 2, 4, 6, 8, 10
-
-  Example (countdown):
-    forstep i = 10 to 0 step -1
-      println i
-    endfor
-    # Output: 10, 9, 8, ..., 1, 0
-
-FOREACH LOOP:
-
-  foreach var in array
-    # var takes each value in the array
-  endforeach
-
-  Example:
-    names = ["Alice", "Bob", "Charlie"]
-    foreach name in names
-      println name
-    endforeach
-    # Output: Alice, Bob, Charlie
-
-  Example (summing):
-    nums = [10, 20, 30, 40, 50]
-    total = 0
-    foreach n in nums
-      total += n
-    endforeach
-    println total    # Output: 150
-
-REPEAT LOOP:
-
-  repeat n times
-    # code to repeat n times
-  endrepeat
-
-  Example:
-    repeat 3 times
-      println "Hello!"
-    endrepeat
-    # Output: Hello! (3 times)
-
-BREAK AND CONTINUE:
-
-  # break exits the current loop
-  for i = 1 to 100
-    if i > 5
-      break
-    endif
-    println i
-  endfor
-  # Output: 1, 2, 3, 4, 5
-
-  # continue skips to the next iteration
-  for i = 1 to 10
-    if i % 2 == 0
-      continue
-    endif
-    println i
-  endfor
-  # Output: 1, 3, 5, 7, 9
+Strings support escape sequences:
+    \n      newline
+    \t      tab
+    \r      carriage return
+    \\      backslash
+    \"      double quote
+    '       single quote
+    \0      null character
 
 ================================================================================
-7. FUNCTIONS
+                         5. OPERATORS
 ================================================================================
 
-DEFINING FUNCTIONS:
+Arithmetic:
+    +       Addition (also string concatenation)
+    -       Subtraction
+    *       Multiplication
+    /       Division
+    %       Modulo
+    **      Power
 
-  func functionname(param1, param2, ...)
-    # function body
-    return value    # optional return statement
-  endfunc
+Comparison:
+    ==      Equal to
+    !=      Not equal to
+    <       Less than
+    >       Greater than
+    <=      Less than or equal
+    >=      Greater than or equal
 
-  Example:
-    func add(a, b)
-      return a + b
-    endfunc
+Logical:
+    &&      Logical AND
+    ||      Logical OR
+    !       Logical NOT
 
-CALLING FUNCTIONS:
+Assignment:
+    =       Simple assignment
+    +=      Add and assign
+    -=      Subtract and assign
+    *=      Multiply and assign
+    /=      Divide and assign
 
-  # As a statement
-  call add(5, 3)
-
-  # As an expression (assign result)
-  result = call add(5, 3)
-
-  # Inside print
-  println call add(5, 3)
-
-  # Nested calls
-  result = call add(call add(2, 3), call add(4, 5))
-
-FUNCTIONS WITH NO PARAMETERS:
-
-  func greet()
-    println "Hello!"
-  endfunc
-
-  call greet()
-
-RETURN VALUES:
-
-  # Return a number
-  func square(n)
-    return n * n
-  endfunc
-
-  # Return a string
-  func get_greeting(name)
-    return "Hello, " + name
-  endfunc
-
-  # Return a boolean
-  func is_even(n)
-    return n % 2 == 0
-  endfunc
-
-  # Return an array
-  func get_range(n)
-    arr = []
-    for i = 1 to n
-      push arr, i
-    endfor
-    return arr
-  endfunc
-
-  # Return nothing (void)
-  func do_something()
-    println "Doing something..."
-  endfunc
-
-RECURSION:
-
-  func factorial(n)
-    if n <= 1
-      return 1
-    endif
-    return n * call factorial(n - 1)
-  endfunc
-
-  result = call factorial(5)    # 120
-
-LOCAL VARIABLES:
-
-  func my_function()
-    local x = 10        # local to this function
-    println x
-  endfunc
-
-  # Variables declared inside functions are local
-  # Variables declared outside functions are global
+Special:
+    ??      Null coalescing (returns right side if left is null)
+    ?.      Optional chaining (safe property access)
+    ...     Spread operator (expand array/object)
+    ..      Range operator (create number range)
+    =>      Arrow function syntax
+    ? :     Ternary operator
 
 ================================================================================
-8. ARRAYS
+                       6. CONTROL FLOW
 ================================================================================
 
-CREATING ARRAYS:
+If/Else:
+    if (x > 0) {
+        println("positive")
+    } else if (x == 0) {
+        println("zero")
+    } else {
+        println("negative")
+    }
 
-  # Empty array
-  arr = []
+While Loop:
+    let i = 0
+    while (i < 10) {
+        println(i)
+        i = i + 1
+    }
 
-  # Array with values
-  nums = [1, 2, 3, 4, 5]
-  names = ["Alice", "Bob", "Charlie"]
-  floats = [1.1, 2.2, 3.3]
+For Loop:
+    for (let i = 0; i < 10; i++) {
+        println(i)
+    }
 
-  # Mixed types (stored as strings internally)
-  mixed = [1, "hello", true]
+For-In Loop (iterates over arrays and ranges):
+    for (let x in [1, 2, 3]) {
+        println(x)
+    }
 
-ARRAY OPERATIONS:
+    for (let i in 1..10) {
+        println(i)
+    }
 
-  # Get length
-  len arr              # Sets len variable to array length
-  array_size arr       # Sets size variable to array length
-
-  # Access elements (0-indexed)
-  first = arr[0]       # Get first element
-  last = arr[len-1]    # Get last element
-
-  # Modify elements
-  arr[0] = 100         # Set first element
-
-  # Add elements
-  push arr, value      # Add to end (beginner-friendly)
-  array_push arr value # Same as push
-
-  # Remove elements
-  pop arr              # Remove last element
-  array_pop arr        # Same as pop
-
-  # Other operations
-  array_sort arr       # Sort array
-  array_reverse arr    # Reverse array
-  array_clear arr      # Remove all elements
-  array_contains arr value  # Check if value exists (sets contains)
-  array_at arr index   # Get element at index (sets at variable)
-
-ITERATING ARRAYS:
-
-  # Using foreach (recommended)
-  foreach item in arr
-    println item
-  endforeach
-
-  # Using for loop
-  for i = 0 to len - 1
-    println arr[i]
-  endfor
-
-  # While loop
-  i = 0
-  while i < len
-    println arr[i]
-    i += 1
-  endwhile
-
-USEFUL PATTERNS:
-
-  # Find maximum
-  nums = [3, 7, 2, 8, 1]
-  max_val = nums[0]
-  foreach n in nums
-    if n > max_val
-      max_val = n
-    endif
-  endforeach
-
-  # Sum all elements
-  total = 0
-  foreach n in nums
-    total += n
-  endforeach
-
-  # Filter array
-  evens = []
-  foreach n in nums
-    if n % 2 == 0
-      push evens, n
-    endif
-  endforeach
+Break and Continue:
+    for (let i = 0; i < 100; i++) {
+        if (i == 10) break
+        if (i % 2 == 0) continue
+        println(i)
+    }
 
 ================================================================================
-9. DICTIONARIES
+                         7. FUNCTIONS
 ================================================================================
 
-CREATING AND USING DICTIONARIES:
+Basic function:
+    func add(a, b) {
+        return a + b
+    }
+    println(add(2, 3))     // 5
 
-  # Set key-value pairs
-  dict_set person name "Alice"
-  dict_set person age "30"
-  dict_set person city "New York"
+Functions with default parameters:
+    func greet(name = "World") {
+        return "Hello, " + name + "!"
+    }
+    println(greet())        // "Hello, World!"
+    println(greet("Alice")) // "Hello, Alice!"
 
-  # Get values
-  dict_get person name
-  println dict_get    # Output: Alice
+Named arguments:
+    func createUser(name, age, email) {
+        println(name + " is " + str(age))
+    }
+    createUser(name: "Alice", age: 30, email: "a@b.com")
 
-  # Check if key exists
-  dict_contains person name
-  if dict_contains
-    println "Key exists"
-  endif
-
-  # Get all keys
-  dict_keys person
-  foreach key in dict_keys
-    println key
-  endforeach
-
-  # Get dictionary size
-  dict_size person
-  println dict_size   # Output: 3
-
-  # Remove a key
-  dict_remove person city
-
-  # Clear all keys
-  dict_clear person
-
-DICTIONARY EXAMPLES:
-
-  # Student grades
-  dict_set grades math "95"
-  dict_set grades science "88"
-  dict_set grades english "92"
-
-  dict_get grades math
-  println "Math grade: " + dict_get
-
-  # Word counter
-  text = "hello world hello mini hello"
-  words = str_split text " "
-  foreach word in words
-    dict_get counts word
-    if not dict_contains counts word
-      dict_set counts word "1"
-    else
-      current = dict_get
-      dict_set counts word str(current + 1)
-    endif
-  endforeach
+Closures (functions capture their environment):
+    func makeCounter() {
+        let count = 0
+        func increment() {
+            count = count + 1
+            return count
+        }
+        return increment
+    }
+    let counter = makeCounter()
+    println(counter())     // 1
+    println(counter())     // 2
 
 ================================================================================
-10. STRINGS
+                     8. ARROW FUNCTIONS
 ================================================================================
 
-STRING LITERALS:
+Single expression:
+    let double = (x) => x * 2
+    println(double(5))     // 10
 
-  name = "Alice"
-  greeting = "Hello, World!"
-  empty = ""
-  with_newline = "Line 1\nLine 2"
-  with_tab = "Column1\tColumn2"
-  with_quote = "She said \"Hello\""
+Multiple parameters:
+    let add = (a, b) => a + b
+    println(add(2, 3))     // 5
 
-STRING OPERATIONS:
-
-  # Length
-  len name               # Sets len to string length
-
-  # Substring
-  str_substr name 0 3    # Sets substr to "Ali" (start, length)
-
-  # Replace
-  str_replace greeting "World" "Mini"  # Sets replace to "Hello, Mini!"
-
-  # Find
-  str_find greeting "World"    # Sets find to 7 (position)
-  str_find greeting "xyz"      # Sets find to -1 (not found)
-
-  # Contains
-  str_contains greeting "Hello"  # Sets contains to 1 (true)
-
-  # Starts with / Ends with
-  str_starts_with greeting "Hello"  # Sets starts_with to 1 (true)
-  str_ends_with greeting "World!"   # Sets ends_with to 1 (true)
-
-  # Trim whitespace
-  str_trim "  Hello  "     # Sets trim to "Hello"
-
-  # Case conversion
-  str_upper "hello"        # Sets upper to "HELLO"
-  str_lower "HELLO"        # Sets lower to "hello"
-  str_capitalize "hello"   # Sets capitalize to "Hello"
-
-  # Repeat
-  str_repeat "ha" 3        # Sets repeat to "hahaha"
-
-  # Split into array
-  str_split "a,b,c" ","    # Sets split to ["a", "b", "c"]
-
-  # Join array into string
-  str_join myarray ", "    # Sets join to "a, b, c"
-
-  # Get length (beginner-friendly)
-  len "Hello"              # Sets len to 5
-
-STRING CONCATENATION:
-
-  first = "Hello"
-  second = "World"
-  full = first + " " + second    # "Hello World"
-
-  name = "Alice"
-  greeting = "Hello, " + name    # "Hello, Alice"
-
-STRING INTERPOLATION IN PRINT:
-
-  println "Hello, " + name
-  println "x = " + x
-  println "Result: " + call compute(x)
+Block body:
+    let greet = (name) => {
+        println("Hello, " + name)
+        return name
+    }
 
 ================================================================================
-11. MATH FUNCTIONS
+                    9. CLASSES & INHERITANCE
 ================================================================================
 
-TRIGONOMETRIC FUNCTIONS:
+Basic class:
+    class Animal {
+        constructor(name) {
+            this.name = name
+        }
+        speak() {
+            return this.name + " makes a sound"
+        }
+    }
+    let a = new Animal("Cat")
+    println(a.speak())     // "Cat makes a sound"
 
-  sin x           # Sine of x (radians), sets sin variable
-  cos x           # Cosine of x (radians), sets cos variable
-  tan x           # Tangent of x (radians), sets tan variable
-
-  sin_deg x       # Sine of x (degrees)
-  cos_deg x       # Cosine of x (degrees)
-  tan_deg x       # Tangent of x (degrees)
-
-  Example:
-    sin 0         # sin = 0
-    cos 0         # cos = 1
-    sin_deg 90    # sin = 1
-
-OTHER MATH FUNCTIONS:
-
-  sqrt x          # Square root, sets sqrt variable
-  pow x y         # x to the power of y, sets pow variable
-  abs x           # Absolute value, sets abs variable
-
-  min a b         # Minimum of a and b, sets min variable
-  max a b         # Maximum of a and b, sets max variable
-  clamp x min max # Clamp x between min and max
-
-ROUNDING FUNCTIONS:
-
-  floor x         # Round down to nearest integer
-  ceil x          # Round up to nearest integer
-  round x         # Round to nearest integer
-
-  Example:
-    floor 3.7     # floor = 3
-    ceil 3.2      # ceil = 4
-    round 3.5     # round = 4
-    round 3.4     # round = 3
-
-NUMBER THEORY:
-
-  gcd a b         # Greatest common divisor
-  lcm a b         # Least common multiple
-  factorial n     # Factorial (n!)
-  fibonacci n     # Nth Fibonacci number
-  is_prime n      # Check if n is prime (sets is_prime to 1 or 0)
-
-LINEAR ALGEBRA:
-
-  lerp a b t      # Linear interpolation: a + (b-a) * t
-
-EXAMPLES:
-
-  # Calculate hypotenuse
-  a = 3
-  b = 4
-  pow a 2         # a^2 = 9
-  c_squared = pow
-  pow b 2         # b^2 = 16
-  c_squared += pow
-  sqrt c_squared  # sqrt = 5
-  println "Hypotenuse: " + sqrt
-
-  # Check if number is prime
-  n = 17
-  is_prime n
-  if is_prime
-    println n + " is prime"
-  else
-    println n + " is not prime"
-  endif
+Inheritance:
+    class Dog extends Animal {
+        speak() {
+            return this.name + " barks"
+        }
+    }
+    let d = new Dog("Rex")
+    println(d.speak())     // "Rex barks"
 
 ================================================================================
-12. RANDOM FUNCTIONS
+                           10. ARRAYS
 ================================================================================
 
-  rand max              # Random integer 0 to max-1
-  randrange min max     # Random integer min to max (inclusive)
-  rand_float min max    # Random float between min and max
-  rand_str length       # Random string of given length
-  rand_choice list      # Random choice from comma-separated list
+Creating arrays:
+    let arr = [1, 2, 3, 4, 5]
 
-  # Results stored in 'random' and 'rand_result' variables
+Accessing elements (0-indexed):
+    println(arr[0])        // 1
 
-EXAMPLES:
+Array length:
+    println(len(arr))      // 5
 
-  # Random number 1-100
-  rand 100
-  println random
+Modifying arrays:
+    arr[0] = 10
 
-  # Random number 1-6 (dice roll)
-  randrange 1 6
-  println random
+Iterating:
+    for (let x in arr) {
+        println(x)
+    }
 
-  # Random float 0.0 to 1.0
-  rand_float 0 1
-  println random
-
-  # Random string of 8 characters
-  rand_str 8
-  println random
-
-  # Random choice from options
-  rand_choice "rock,paper,scissors"
-  println random
-
-  # Simulate dice rolls
-  repeat 10 times
-    randrange 1 6
-    println random
-  endrepeat
+Array functions:
+    array_push arr value   - Add element to end
+    array_pop arr          - Remove last element
+    array_size arr         - Get array size
+    array_sort arr         - Sort array
+    array_reverse arr      - Reverse array
+    array_contains arr val - Check if value exists
+    array_clear arr        - Clear array
+    array_at arr index     - Get element at index
+    push arr value         - Shorthand push (new in v4.0)
+    pop arr                - Shorthand pop (new in v4.0)
 
 ================================================================================
-13. FILE OPERATIONS
+                          11. OBJECTS
 ================================================================================
 
-READING FILES:
+Creating objects:
+    let person = {
+        name: "Alice",
+        age: 30,
+        city: "NYC"
+    }
 
-  file_read filename
-  println file_content    # Contains the file contents
-  println file_size       # Contains the file size
+Accessing properties:
+    println(person.name)   // "Alice"
 
-  Example:
-    file_read "data.txt"
-    println file_content
+Setting properties:
+    person.age = 31
 
-WRITING FILES:
-
-  file_write filename content
-  if file_written
-    println "File written successfully"
-  endif
-
-  Example:
-    file_write "output.txt" "Hello, World!"
-
-APPENDING TO FILES:
-
-  file_append filename content
-  if file_appended
-    println "Content appended"
-  endif
-
-CHECKING FILES:
-
-  file_exists filename
-  if file_exists
-    println "File exists"
-  endif
-
-  file_size filename
-  println file_size    # Size in bytes
-
-DELETING FILES:
-
-  file_delete filename
-  if file_deleted
-    println "File deleted"
-  endif
-
-COPYING AND MOVING:
-
-  file_copy source destination
-  file_move source destination
-
-LISTING FILES:
-
-  file_list directory_path
-  foreach filename in files
-    println filename
-  endforeach
-
-EXAMPLES:
-
-  # Write and read a file
-  file_write "test.txt" "Line 1\nLine 2\nLine 3"
-  file_read "test.txt"
-  println file_content
-
-  # Process a file line by line
-  file_read "data.txt"
-  lines = str_split file_content "\n"
-  foreach line in lines
-    println line
-  endforeach
-
-  # Count lines in a file
-  file_read "myfile.txt"
-  lines = str_split file_content "\n"
-  len lines
-  println "File has " + len + " lines"
+Spread operator (merge objects):
+    let updated = { ...person, email: "alice@example.com" }
 
 ================================================================================
-14. SYSTEM FUNCTIONS
+                      12. DICTIONARIES
 ================================================================================
 
-  system command       # Run a system/shell command
-  time                 # Get current date/time
-  clock                # Get elapsed program time in milliseconds
+Dictionaries store key-value pairs:
 
-SCREEN AND CURSOR:
-
-  clear / cls          # Clear the screen
-  gotoxy x y           # Move cursor to position (x, y)
-  color n              # Set text color (0-15)
-
-SOUND:
-
-  beep frequency duration    # Play a beep sound
-  # frequency: Hz (default 440)
-  # duration: milliseconds (default 200)
-
-KEYBOARD INPUT:
-
-  key                  # Get key press (non-blocking, returns immediately)
-  key_wait             # Wait for key press (blocking)
-  pause                # Wait for any key press (with message)
-
-MODE SETTINGS:
-
-  debug on|off         # Enable/disable debug mode
-  trace on|off         # Enable/disable trace mode
-  quiet on|off         # Enable/disable quiet mode
-  warnings on|off      # Enable/disable warnings
-  color_output on|off  # Enable/disable colored output
-
-TIMING:
-
-  sleep milliseconds   # Sleep for specified milliseconds
-  wait seconds         # Sleep for specified seconds
-  clock                # Get elapsed time since program start
-
-EXAMPLES:
-
-  # Simple timer
-  clock
-  repeat 1000000 times
-    # do some work
-  endforeach
-  clock
-  println "Elapsed: " + clock + "ms"
-
-  # System command
-  system "dir"         # Windows
-  system "ls -la"      # Linux/Mac
-
-  # Play a melody
-  beep 440 200
-  sleep 250
-  beep 494 200
-  sleep 250
-  beep 523 200
+    dict_set mydict key value   - Set a key-value pair
+    dict_get mydict key         - Get value for a key (-> dict_get variable)
+    dict_remove mydict key      - Remove a key
+    dict_contains mydict key    - Check if key exists (-> dict_contains bool)
+    dict_keys mydict            - List all keys (-> dict_keys array)
+    dict_size mydict            - Get number of keys (-> dict_size integer)
+    dict_clear mydict           - Remove all keys
 
 ================================================================================
-15. INPUT/OUTPUT
+                13. F-STRINGS (FORMATTED STRING LITERALS)
 ================================================================================
 
-PRINTING:
+F-strings allow embedding expressions inside strings using { }:
 
-  print text           # Print without newline
-  println text         # Print with newline
-  print_nl text        # Print without newline (alias)
+    let name = "World"
+    let msg = f"Hello, {name}!"
+    println(msg)           // "Hello, World!"
 
-  # Print variables
-  println name
-  println x
-
-  # Print expressions
-  println x + y
-  println "Result: " + call compute(x)
-
-  # Print multiple values
-  print "x = ", x, " y = ", y
-  println
-
-  # Print arrays
-  println arr          # Prints: [1, 2, 3]
-  println arr[0]       # Prints first element
-
-  # Print formatted
-  print_hex 255        # Print in hexadecimal
-  print_bin 10         # Print in binary
-  print_oct 10         # Print in octal
-  print_float 3.14     # Print with 2 decimal places
-
-GETTING INPUT:
-
-  input prompt         # Get user input (auto-detects type)
-  input_int prompt     # Get integer input
-  input_str prompt     # Get string input
-  input_bool prompt    # Get boolean input
-  input_char prompt    # Get single character input
-
-  # Input is stored in 'input' and 'input_str' variables
-
-EXAMPLES:
-
-  # Basic input
-  name = input "What is your name? "
-  println "Hello, " + name
-
-  # Numeric input
-  age = input_int "How old are you? "
-  println "You will be " + (age + 1) + " next year"
-
-  # Boolean input
-  answer = input_bool "Do you like programming? "
-  if answer
-    println "Great!"
-  endif
-
-  # Input validation loop
-  age = 0
-  while age < 1 or age > 150
-    age = input_int "Enter your age (1-150): "
-  endwhile
-  println "Your age is " + age
+Expressions inside f-strings:
+    let x = 10
+    let y = 20
+    println(f"{x} + {y} = {x + y}")  // "10 + 20 = 30"
 
 ================================================================================
-16. CONSTANTS & SYSTEM VARIABLES
+                   14. MULTI-LINE STRINGS
 ================================================================================
 
-READ-ONLY CONSTANTS:
+Triple-quoted strings preserve formatting:
 
-  PI      = 3.14159265358979...    # Mathematical constant pi
-  E       = 2.71828182845904...    # Euler's number
-  true    = 1                      # Boolean true
-  false   = 0                      # Boolean false
-
-SYSTEM VARIABLES (auto-updated by functions):
-
-  # Input
-  input           # Last input value
-  input_int       # Last integer input
-  input_str       # Last string input
-  input_float     # Last float input
-
-  # String operations
-  len             # Length of string or array
-  substr          # Substring result
-  replace         # Replace result
-  find            # Find position (-1 if not found)
-  contains        # Contains check (1 or 0)
-  starts_with     # Starts with check
-  ends_with       # Ends with check
-  trim            # Trimmed string
-  upper           # Uppercase string
-  lower           # Lowercase string
-  capitalize      # Capitalized string
-  repeat          # Repeated string
-  join            # Joined string
-  split           # Split array
-  split_size      # Split result size
-
-  # Array operations
-  size            # Array size
-  popped          # Popped element
-  at              # Element at index
-
-  # Math results
-  sin, cos, tan   # Trigonometric results
-  sqrt            # Square root result
-  pow             # Power result
-  abs             # Absolute value result
-  min, max        # Min/Max results
-  clamp           # Clamp result
-  floor, ceil, round  # Rounding results
-  gcd, lcm        # GCD/LCM results
-  factorial       # Factorial result
-  fibonacci       # Fibonacci result
-  is_prime        # Prime check result
-  lerp            # Lerp result
-
-  # Random
-  random          # Random value
-  rand_result     # Random result
-
-  # File operations
-  file_content    # File content
-  file_size       # File size
-  file_exists     # File exists check
-  file_written    # Write success
-  file_appended   # Append success
-  file_deleted    # Delete success
-  file_count      # File count
-
-  # System
-  system_result   # System command result
-  time            # Current date/time
-  clock           # Elapsed time (ms)
+    let poem = """
+    Roses are red,
+    Violets are blue,
+    Mini is awesome,
+    And so are you.
+    """
+    println(poem)
 
 ================================================================================
-17. COMMENTS
+                   15. ERROR HANDLING (TRY/CATCH)
 ================================================================================
 
-Mini supports multiple comment styles:
+Try/catch blocks catch runtime errors:
 
-  # This is a comment (single line)
-  // This is also a comment
-  -- This is also a comment (but not at the end of code)
+    try {
+        let result = 10 / 0
+    } catch (e) {
+        println("Error: " + e)
+    }
 
-  /* Multi-line
-     comment */
-
-  ; This is also a comment
-
-EXAMPLES:
-
-  # Calculate area
-  width = 10
-  height = 5
-  area = width * height
-  println area
-
-  /* This is a multi-line
-     comment that can span
-     multiple lines */
+Throwing custom errors:
+    func divide(a, b) {
+        if (b == 0) {
+            throw "Division by zero"
+        }
+        return a / b
+    }
 
 ================================================================================
-18. ERROR HANDLING
+                      16. RANGE OPERATOR
 ================================================================================
 
-Mini provides helpful error messages with:
+Create sequences of numbers:
 
-  - Line numbers showing where the error occurred
-  - The offending line of code
-  - Clear description of what went wrong
+    for (let i in 1..10) {
+        print(str(i) + " ")
+    }
+    // Output: 1 2 3 4 5 6 7 8 9 10
 
-ERROR EXAMPLES:
-
-  # Missing endif
-  if x > 10
-    println "big"
-  # Error on line 3: Missing matching 'endif' for 'if' statement
-  #   >> if x > 10
-
-  # Unknown variable
-  println unknown_var
-  # Warning: Unknown command: println
-
-  # Division by zero
-  x = 1 / 0
-  # (handled gracefully, returns 0)
-
-COMMON ERRORS:
-
-  1. Missing endif/endwhile/endfor/endrepeat/endfunc
-     -> Make sure every block has a matching end keyword
-
-  2. Undefined variables
-     -> Variables are created on first assignment
-
-  3. Type mismatches
-     -> Mini handles most type conversions automatically
-
-  4. Array index out of bounds
-     -> Check array size before accessing elements
-
-  5. Infinite loops
-     -> Always ensure loop conditions eventually become false
-     -> Use break to exit loops when needed
+Ranges are inclusive on both ends.
 
 ================================================================================
-19. TIPS & BEST PRACTICES
+                     17. SPREAD OPERATOR
 ================================================================================
 
-VARIABLES:
+Expand arrays:
+    let a = [1, 2, 3]
+    let b = [...a, 4, 5]    // [1, 2, 3, 4, 5]
 
-  - Use descriptive names: score, player_name, total_count
-  - Avoid single letters except in short loops: i, j, k
-  - Initialize variables before use
-  - Use const for values that don't change
-
-FUNCTIONS:
-
-  - Keep functions short and focused
-  - Use descriptive function names
-  - Return values rather than using global variables
-  - Document complex functions with comments
-
-LOOPS:
-
-  - Use foreach for iterating over arrays
-  - Use for when you need an index
-  - Use while for condition-based repetition
-  - Always ensure loops terminate
-  - Use break to exit early when needed
-
-ARRAYS:
-
-  - Initialize arrays before use: arr = []
-  - Check bounds before accessing: if index < len
-  - Use push/pop for stack operations
-  - Use foreach for iteration
-
-STRINGS:
-
-  - Use + for concatenation: "Hello " + name
-  - Check contains before finding: str_contains str sub
-  - Use len for length: len str_var
-
-DEBUGGING:
-
-  - Use println to print variable values
-  - Use vars to see all variables
-  - Use debug on for detailed output
-  - Use trace on to see execution flow
-
-PERFORMANCE:
-
-  - Avoid unnecessary function calls in loops
-  - Use local variables in functions
-  - Minimize string concatenation in tight loops
-  - Use appropriate data types
+Expand objects:
+    let person = { name: "Alice", age: 30 }
+    let updated = { ...person, city: "NYC" }
 
 ================================================================================
-20. COMPLETE EXAMPLES
+                   18. OPTIONAL CHAINING
 ================================================================================
 
-EXAMPLE 1: Hello World
+Safe property access (returns null instead of error):
 
-  println "Hello, World!"
+    let user = null
+    let name = user?.name    // null (no error)
 
-EXAMPLE 2: Calculator
-
-  println "Mini Calculator"
-  println "================"
-
-  a = input_int "Enter first number: "
-  op = input "Enter operator (+, -, *, /): "
-  b = input_int "Enter second number: "
-
-  if op == "+"
-    result = a + b
-  elif op == "-"
-    result = a - b
-  elif op == "*"
-    result = a * b
-  elif op == "/"
-    if b != 0
-      result = a / b
-    else
-      println "Error: Division by zero!"
-      result = 0
-    endif
-  else
-    println "Unknown operator"
-    result = 0
-  endif
-
-  println "Result: " + result
-
-EXAMPLE 3: Number Guessing Game
-
-  println "Number Guessing Game"
-  println "===================="
-
-  randrange 1 100
-  target = random
-  guess = 0
-  attempts = 0
-
-  while guess != target
-    guess = input_int "Guess a number (1-100): "
-    attempts += 1
-
-    if guess < target
-      println "Too low!"
-    elif guess > target
-      println "Too high!"
-    else
-      println "Correct! You got it in " + attempts + " attempts!"
-    endif
-  endwhile
-
-EXAMPLE 4: Fibonacci Sequence
-
-  func fibonacci(n)
-    if n <= 0
-      return 0
-    endif
-    if n == 1
-      return 1
-    endif
-    return call fibonacci(n - 1) + call fibonacci(n - 2)
-  endfunc
-
-  println "Fibonacci sequence:"
-  for i = 0 to 10
-    println i + ": " + call fibonacci(i)
-  endfor
-
-EXAMPLE 5: Array Operations
-
-  # Create and manipulate arrays
-  nums = [5, 2, 8, 1, 9, 3]
-  println "Original: " + nums
-
-  # Sort
-  array_sort nums
-  println "Sorted: " + nums
-
-  # Reverse
-  array_reverse nums
-  println "Reversed: " + nums
-
-  # Find sum
-  total = 0
-  foreach n in nums
-    total += n
-  endforeach
-  println "Sum: " + total
-
-  # Find max
-  max_val = nums[0]
-  foreach n in nums
-    if n > max_val
-      max_val = n
-    endif
-  endforeach
-  println "Max: " + max_val
-
-EXAMPLE 6: String Processing
-
-  text = "Hello, World! Welcome to Mini Programming Language."
-
-  # Get length
-  len text
-  println "Length: " + len
-
-  # Count words
-  words = str_split text " "
-  len words
-  println "Words: " + len
-
-  # Convert to uppercase
-  str_upper text
-  println "Uppercase: " + upper
-
-  # Find substring
-  str_find text "Mini"
-  if find != -1
-    println "Found 'Mini' at position " + find
-  endif
-
-  # Replace
-  str_replace text "Mini" "Awesome"
-  println "Modified: " + replace
-
-EXAMPLE 7: File Operations
-
-  # Write a file
-  file_write "data.txt" "Line 1\nLine 2\nLine 3\n"
-
-  # Read the file
-  file_read "data.txt"
-  println file_content
-
-  # Append to file
-  file_append "data.txt" "Line 4\n"
-
-  # Check if file exists
-  file_exists "data.txt"
-  if file_exists
-    println "File exists!"
-  endif
-
-  # List files in current directory
-  file_list "."
-  foreach filename in files
-    println filename
-  endforeach
-
-EXAMPLE 8: Dictionary Usage
-
-  # Student records
-  dict_set student name "Alice"
-  dict_set student age "20"
-  dict_set student grade "A"
-
-  # Print student info
-  dict_get student name
-  println "Name: " + dict_get
-
-  dict_get student age
-  println "Age: " + dict_get
-
-  dict_get student grade
-  println "Grade: " + dict_get
-
-  # Check if key exists
-  dict_contains student email
-  if dict_contains
-    dict_get student email
-    println "Email: " + dict_get
-  else
-    println "No email on file"
-  endif
+    let person = { name: "Alice", address: { city: "NYC" } }
+    println(person?.name)           // "Alice"
+    println(person?.address?.city)  // "NYC"
 
 ================================================================================
-                          END OF MINI LANGUAGE REFERENCE
+                    19. NULL COALESCING
+================================================================================
+
+Provide default values for null:
+
+    let config = null
+    let timeout = config ?? 30   // 30
+
+    let name = "Alice"
+    let display = name ?? "anonymous"  // "Alice"
+
+================================================================================
+                       20. SWITCH/CASE
+================================================================================
+
+    switch (day) {
+        case 1: println("Monday"); break
+        case 2: println("Tuesday"); break
+        case 3: println("Wednesday"); break
+        default: println("Other day")
+    }
+
+================================================================================
+                    21. BUILT-IN FUNCTIONS
+================================================================================
+
+Output:
+    print(...)         Print without newline
+    println(...)       Print with newline
+    print_hex val      Print in hexadecimal
+    print_bin val      Print in binary
+    print_oct val      Print in octal
+    print_float val    Print with 2 decimal places
+
+Type conversion:
+    str(x)             Convert to string
+    num(x)             Convert to number
+    int(x)             Convert to integer
+    float(x)           Convert to float
+    bool(x)            Convert to boolean
+
+Information:
+    type(x)            Returns type name as string
+    len(x)             Returns length of string or array
+
+String operations:
+    str_len var                Get string length
+    str_substr var start len   Get substring
+    str_replace var from to    Replace substring
+    str_contains var sub       Check if contains substring
+    str_find var sub           Find substring position
+    str_trim var               Remove whitespace
+    str_upper var              Convert to uppercase
+    str_lower var              Convert to lowercase
+    str_capitalize var         Capitalize first letter
+    str_repeat var n           Repeat string n times
+    str_split var delim        Split string into array
+    str_join arr delim         Join array into string
+    str_reverse var            Reverse a string (NEW in v4.0)
+    str_count var sub          Count occurrences (NEW in v4.0)
+    str_index_of var sub       Find first index (NEW in v4.0)
+
+Input:
+    input(prompt)      Read line from stdin
+    input_int(prompt)  Read integer from stdin
+    input_str(prompt)  Read string from stdin
+    input_bool(prompt) Read boolean from stdin
+    input_char(prompt) Read character from stdin
+
+Error handling:
+    error(msg)         Throw an error
+
+================================================================================
+            22. COLLECTION HIGHER-ORDER FUNCTIONS (NEW in v4.0)
+================================================================================
+
+Map (transform each element):
+    func double(x) { return x * 2 }
+    map myarray double
+    // Result stored in map_result array
+
+Filter (keep matching elements):
+    func isEven(x) { return x % 2 == 0 }
+    filter myarray isEven
+    // Result stored in filter_result array
+
+Reduce (combine all elements):
+    func add(acc, x) { return acc + x }
+    reduce myarray add 0
+    // Result stored in reduce_result variable
+
+Find (find first match):
+    func isPositive(x) { return x > 0 }
+    find myarray isPositive
+    // Result stored in find_result, index in find_index
+
+================================================================================
+                     23. LANGUAGE KEYWORDS
+================================================================================
+
+    let         Variable declaration
+    const       Constant declaration
+    func        Function declaration
+    return      Return from function
+    if          Conditional
+    else        Alternative branch
+    elif        Else-if branch
+    while       Loop
+    for         Loop
+    in          Iterate over range/array
+    class       Class declaration
+    extends     Inheritance
+    new         Create instance
+    this        Current instance reference
+    super       Parent class reference
+    try         Error handling
+    catch       Catch errors
+    throw       Throw error
+    break       Exit loop
+    continue    Skip iteration
+    switch      Multi-way branch
+    case        Switch case
+    default     Switch default
+    true        Boolean true
+    false       Boolean false
+    null        Null value
+    include     Include another file
+
+================================================================================
+                    24. OPERATOR PRECEDENCE
+================================================================================
+
+From lowest to highest:
+
+1.  ??          Null coalescing
+2.  ||          Logical OR
+3.  &&          Logical AND
+4.  == != < > <= >=  Comparison
+5.  ..          Range
+6.  + -         Addition, subtraction
+7.  * / %       Multiplication, division, modulo
+8.  **          Power (right-associative)
+9.  ! - +       Unary operators
+10. ?. . [] ()  Member access, indexing, calls
+11. ...         Spread
+
+================================================================================
+                     25. REPL COMMANDS
+================================================================================
+
+    help            Show all commands
+    clear / cls     Clear screen
+    load filename   Load and run a .mini file
+    vars            List all variables
+    type var        Show variable type
+    delete var      Delete a variable
+    inc var         Increment variable by 1
+    dec var         Decrement variable by 1
+    clear_vars      Clear all variables
+    version         Show version info
+    exit / quit     Exit the REPL
+
+================================================================================
+                         26. EXAMPLES
+================================================================================
+
+--- Hello World ---
+println("Hello, World!")
+
+--- Fibonacci ---
+func fibonacci(n) {
+    if (n <= 1) return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+for (let i = 0; i < 10; i++) {
+    println(f"fibonacci({i}) = {fibonacci(i)}")
+}
+
+--- Class Hierarchy ---
+class Shape {
+    constructor(color) { this.color = color }
+    describe() { return f"A {this.color} shape" }
+}
+
+class Circle extends Shape {
+    constructor(color, radius) {
+        super(color)
+        this.radius = radius
+    }
+    area() { return 3.14159 * this.radius * this.radius }
+    describe() { return f"A {this.color} circle (r={this.radius})" }
+}
+
+let c = new Circle("red", 5)
+println(c.describe())
+println(f"Area: {c.area()}")
+
+--- Array Manipulation ---
+let arr = [1, 2, 3, 4, 5]
+let doubled = []
+for (let x in arr) {
+    doubled = [...doubled, x * 2]
+}
+println(doubled)    // [2, 4, 6, 8, 10]
+
+--- Collection Higher-Order Functions (v4.0) ---
+func double(x) { return x * 2 }
+func isEven(x) { return x % 2 == 0 }
+func add(acc, x) { return acc + x }
+
+let numbers = [1, 2, 3, 4, 5]
+map numbers double
+println map_result     // [2, 4, 6, 8, 10]
+
+filter numbers isEven
+println filter_result  // [2, 4]
+
+reduce numbers add 0
+println reduce_result  // 15
+
+--- Null Safety ---
+let user = null
+let name = user?.name ?? "anonymous"
+println(name)       // "anonymous"
+
+--- Error Handling ---
+try {
+    throw "Something went wrong"
+} catch (e) {
+    println("Caught: " + e)
+}
+
+--- F-String Formatting ---
+let name = "Mini"
+let version = 4.0
+println(f"Language: {name} v{version}")
+println(f"2 + 3 = {2 + 3}")
+
+--- Switch Statement ---
+let score = 85
+switch (true) {
+    case score >= 90: println("A"); break
+    case score >= 80: println("B"); break
+    case score >= 70: println("C"); break
+    default: println("F")
+}
+
+================================================================================
+                           27. FAQ
+================================================================================
+
+Q: How do I run a Mini program?
+A: Save your code in a .mini file and run: mini program.mini
+
+Q: How do I get user input?
+A: Use the input() function:
+   let name = input("What is your name? ")
+
+Q: How do I define a function?
+A: Use the func keyword:
+   func greet(name) {
+       return "Hello, " + name
+   }
+
+Q: How do I handle errors?
+A: Use try/catch blocks:
+   try {
+       let result = riskyOperation()
+   } catch (e) {
+       println("Error: " + e)
+   }
+
+Q: What's new in v4.0.0?
+A: Collection higher-order functions (map, filter, reduce),
+   new string/math/hash functions, improved error messages,
+   and faster execution.
+
+================================================================================
+                     28. BEST PRACTICES
+================================================================================
+
+1. Use descriptive variable names
+   Good: let userName = "Alice"
+   Bad:  let x = "Alice"
+
+2. Use const for values that don't change
+   const PI = 3.14159
+
+3. Keep functions small and focused
+   Each function should do one thing well
+
+4. Handle errors gracefully
+   Always use try/catch for operations that might fail
+
+5. Use comments to explain why, not what
+   Good: // Cache result to avoid re-computation
+   Bad:  // Increment i by 1
+
+6. Use meaningful function names
+   Good: func calculateArea(radius)
+   Bad:  func calc(r)
+
+================================================================================
+                     29. TROUBLESHOOTING
+================================================================================
+
+Problem: "File not found"
+Solution: Check the file path and make sure the file exists.
+
+Problem: "Variable not found"
+Solution: Make sure the variable is declared before use.
+
+Problem: "Missing matching 'endif'"
+Solution: Every 'if' must have a matching 'endif'.
+
+Problem: "Maximum recursion depth exceeded"
+Solution: Your function is calling itself too many times.
+          Add a base case to stop the recursion.
+
+Problem: "Type mismatch"
+Solution: Make sure you're using the correct data type.
+
+================================================================================
+                      30. VERSION HISTORY
+================================================================================
+
+v4.0.0 (2026)
+  - Collection higher-order functions (map, filter, reduce, find)
+  - New string functions (reverse, count, index_of)
+  - New math functions (log, log2, log10, sign)
+  - Hash functions (md5, sha1, hash)
+  - Assert function
+  - Improved error messages with line/column info
+  - Faster execution with optimized variable lookups
+  - Modular code architecture
+  - Complete documentation rewrite
+
+v3.0.0 (2025)
+  - Complete rewrite with Lexer -> Parser -> AST -> Tree-walking Evaluator
+  - Classes and inheritance
+  - Arrow functions
+  - F-strings
+  - Error handling (try/catch)
+  - Optional chaining and null coalescing
+  - Spread operator
+  - Range operator
+  - Dictionary support
+
+v2.0.0
+  - Arrays and collections
+  - String functions
+  - File operations
+  - Math library
+  - REPL improvements
+
+v1.0.0
+  - Initial release
+  - Basic variables, functions, and control flow
+
+================================================================================
+                     MINI LANGUAGE TEAM
+                     Copyright 2026
 ================================================================================
