@@ -6,6 +6,8 @@ The goal of Mini is to make programming easy to learn while still providing enou
 
 Mini focuses on **readability, simplicity, and fun**.
 
+> **🇮🇷 Made by an Iranian developer**
+
 ---
 
 ## Important Note
@@ -155,4 +157,4 @@ MIT License
 
 ---
 
-Made with ❤️ in C++
+Made with ❤️ in C++ by an Iranian developer 🇮🇷
