@@ -1,16 +1,17 @@
 # Mini
 
-Mini is a simple, beginner-friendly interpreted programming language written in C++.
+**Mini** is a simple, beginner-friendly interpreted programming language written in C++.
 
 The goal of Mini is to make programming easy to learn while still providing enough features to create games, automation scripts, utilities, and small applications.
 
-Mini focuses on readability, simplicity, and fun.
+Mini focuses on **readability, simplicity, and fun**.
 
 ---
 
-# Important Note
+## Important Note
 
-Mini is still in early development. Some features, commands, or examples shown in this documentation may not work correctly or may not be fully implemented yet.
+**Mini is still in early development.**  
+Some features, commands, or examples shown in this documentation may not work correctly or may not be fully implemented yet.
 
 The language is continuously improving, and future updates will fix bugs, improve stability, and complete missing features.
 
@@ -18,16 +19,16 @@ Thank you for understanding and supporting Mini!
 
 ---
 
-# Features
+## Features
 
-## Input
+### Input
 
 ```mini
-name = input "Name: "
-println Hello name
+name = input "Enter your name: "
+println "Hello" name
 ```
 
-## Conditions
+### Conditions
 
 ```mini
 if x > 5
@@ -39,9 +40,9 @@ else
 endif
 ```
 
-## Loops
+### Loops
 
-### While
+#### While Loop
 
 ```mini
 while x < 10
@@ -49,7 +50,8 @@ while x < 10
     inc x
 endwhile
 ```
-### Repeat
+
+#### Repeat Loop
 
 ```mini
 repeat 3 times
@@ -57,7 +59,7 @@ repeat 3 times
 endrepeat
 ```
 
-## Functions
+### Functions
 
 ```mini
 func hello(name)
@@ -67,7 +69,7 @@ endfunc
 call hello("Mini")
 ```
 
-Functions can also return values.
+Functions can also return values:
 
 ```mini
 func add(a,b)
@@ -77,7 +79,7 @@ endfunc
 println call add(5,7)
 ```
 
-## Arrays
+### Arrays
 
 ```mini
 numbers = [10,20,30]
@@ -86,7 +88,8 @@ println numbers[0]
 println numbers[1]
 println numbers[2]
 ```
-## Math
+
+### Math Operations
 
 ```mini
 println 2+3*4
@@ -94,7 +97,8 @@ println (2+3)*4
 println 2^8
 println 25^0.5
 ```
-## File Operations
+
+### File Operations
 
 ```mini
 file_write "save.txt" "Hello"
@@ -104,7 +108,7 @@ println file_read "save.txt"
 
 ---
 
-# Language Philosophy
+## Language Philosophy
 
 Mini is designed to be:
 
@@ -112,29 +116,40 @@ Mini is designed to be:
 - Easy to read
 - Lightweight
 - Fast
-- Beginner friendly
+- Beginner-friendly
 - Great for learning programming
 
 Mini intentionally avoids unnecessary complexity.
 
 ---
 
-# Build
+## Requirements
 
-Requirements
+- This program requires **C++17** or **C++14** to run
 
-- C++17
 ---
 
-# Project Goals
+## Important Execution Note
+
+**You must run this program using a Terminal.**
+
+If you use **Windows Command Prompt (cmd.exe)**, the colors in the output may not display correctly and could break.
+
+**Please note:** Colors may also not display properly in **PowerShell**.
+
+For the best experience, use a modern terminal emulator that supports ANSI color codes.
+
+---
+
+## Project Goals
 
 Mini is not meant to compete with C++, Python, or Java.
 
-Instead, it aims to be a fun language that is easy for beginners to understand while remaining powerful enough for real projects.
+Instead, it aims to be a **fun language** that is easy for beginners to understand while remaining powerful enough for real projects.
 
 ---
 
-# License
+## License
 
 MIT License
 
