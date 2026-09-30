@@ -1,9 +1,9 @@
 ================================================================================
-                     MINI LANGUAGE v4.0.0 — COMPLETE REFERENCE
+                     MINI LANGUAGE v4.1.0 — COMPLETE REFERENCE
 ================================================================================
 
 Mini Language is a modern, interpreted programming language designed for
-readability and ease of use. Version 4.0.0 brings significant improvements
+readability and ease of use. Version 4.1.0 brings significant improvements
 in performance, error handling, and language features while preserving
 Mini's unique identity.
 
@@ -43,7 +43,8 @@ Copyright: 2026
 27. FAQ
 28. Best Practices
 29. Troubleshooting
-30. Version History
+30. Mini 4.1.0 New Features
+31. Version History
 
 ================================================================================
                         1. INTRODUCTION
@@ -51,7 +52,7 @@ Copyright: 2026
 
 Mini Language is a programming language built for simplicity and clarity.
 It uses a clean, English-like syntax that makes programs easy to read
-and write. Version 4.0.0 is a major upgrade with:
+and write. Version 4.1.0 is a major upgrade with:
 
   - Improved error messages with line numbers and suggestions
   - Faster execution with optimized variable lookups
@@ -75,6 +76,27 @@ Get help:
 
 Show version:
     mini --version
+
+Run without ANSI colors:
+    mini --nocolor
+
+Compile a Mini file to a standalone executable:
+    mini --compile game.mini
+    mini --compile game.mini game.exe
+
+================================================================================
+                     MINI 4.1.0 COMMAND-LINE OPTIONS
+================================================================================
+
+    mini --help
+    mini --version
+    mini --nocolor
+    mini --nocolor program.mini
+    mini --compile program.mini
+    mini --compile program.mini program.exe
+
+`--nocolor` removes Mini's ANSI color sequences. `--compile` creates a standalone
+executable containing an embedded Mini interpreter and the Mini source.
 
 ================================================================================
                     3. VARIABLES & CONSTANTS
@@ -604,6 +626,10 @@ From lowest to highest:
     clear_vars      Clear all variables
     version         Show version info
     exit / quit     Exit the REPL
+    cd path         Change the current directory
+    pwd             Show the current directory
+    edit filename   Open the console editor
+    compile file.mini [output.exe]  Build a standalone .exe
 
 ================================================================================
                          26. EXAMPLES
@@ -767,7 +793,84 @@ Problem: "Type mismatch"
 Solution: Make sure you're using the correct data type.
 
 ================================================================================
-                      30. VERSION HISTORY
+                 30. MINI 4.1.0 NEW FEATURES
+================================================================================
+
+Quoted file content keeps spaces:
+    file_write "save.txt" "Hello neighbor"
+    file_append "save.txt" "! Welcome to Mini"
+
+Keyboard polling is intentionally simple:
+    while true
+        key_pressed "a"
+        if key_pressed
+            println "A is held"
+        endif
+        sleep 10
+    endwhile
+
+Mouse polling:
+    while true
+        mouse_pressed "right"
+        if mouse_pressed
+            println "Right mouse button is held"
+        endif
+        mouse_clicked "left"
+        if mouse_clicked
+            println "Left click!"
+        endif
+        mouse_position
+        println mouse_x + ", " + mouse_y
+        sleep 10
+    endwhile
+
+Change directory:
+    cd "C:/test"
+    pwd
+
+Comments can be single-line or block comments. Mini's block syntax is:
+    :;: this is a comment :;:
+
+A comment may span several lines:
+    :;:hi hi hi hi
+    hi hi hi hi
+    hi:;:
+
+Everything between the first and second :;: is ignored, while text inside
+quoted strings remains normal program text.
+
+Console editor:
+    edit save.txt
+
+Windows editor shortcuts:
+    Enter / Shift+Enter   Insert a new line
+    Ctrl+S                Save
+    Shift+Arrow           Select text
+    Ctrl+C                Copy selected text
+    Ctrl+V                Paste clipboard text
+    Ctrl+Q                Quit editor
+
+Standalone executable builds:
+    mini --compile hello.mini
+    mini --compile hello.mini hello.exe
+
+The produced executable contains an embedded copy of the Mini interpreter and
+an embedded copy of the .mini source. When started, it extracts both to a
+temporary directory, runs the embedded interpreter with the embedded source,
+and cleans the temporary files afterward.
+
+No-color mode:
+    mini --nocolor
+    mini --nocolor hello.mini
+
+This disables Mini's ANSI/console color output for older terminals and simple
+command prompts.
+
+Backward compatibility:
+    C++17 is required. The codebase intentionally avoids std::filesystem and
+    newer language features so it can be built with GCC / MinGW g++ 6.3.0.
+================================================================================
+                      31. VERSION HISTORY
 ================================================================================
 
 v4.0.0 (2026)
@@ -807,3 +910,53 @@ v1.0.0
                      MINI LANGUAGE TEAM
                      Copyright 2026
 ================================================================================
+
+
+
+
+================================================================================
+4.1.0 INPUT, TIMING & INLINE COLORS
+================================================================================
+
+sleep seconds
+    Pause the program for a number of seconds. Decimals are supported.
+
+Examples:
+    sleep 2
+    sleep 0.5
+    sleep(1.25)
+
+wait
+    Wait for an input event instead of immediately continuing.
+
+Examples:
+    wait key a
+    wait key enter
+    wait mouse left
+    wait mouse right
+    wait mouse_pressed left
+
+stop
+    Stop the current Mini program cleanly. Unlike exit, stop ends the
+    current program execution without closing the Mini console itself.
+
+Inline colors
+    Colors can be embedded directly in print/println text:
+
+    print "{:red:}hello{:end:}"
+    print {:light_green:}Hello!{:end:}
+
+    The tag is not printed. {:end:} restores the normal terminal color.
+
+Available color names:
+    black, red, green, yellow, blue, magenta, cyan, white
+    dark_black, dark_red, dark_green, dark_yellow, dark_blue,
+    dark_magenta, dark_cyan, dark_white
+    light_black, light_red, light_green, light_yellow, light_blue,
+    light_magenta, light_cyan, light_white
+    bright_black, bright_red, bright_green, bright_yellow, bright_blue,
+    bright_magenta, bright_cyan, bright_white
+    bold, dim, underline, end, reset, normal
+
+--nocolor also removes inline color tags, so the same Mini program can
+be used on old terminals that do not support colors.
